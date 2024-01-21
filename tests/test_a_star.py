@@ -1,6 +1,14 @@
 import pytest
-
 from robotgo.algorythm import Node, AStar
+
+
+COLS_1 = 4
+ROWS_1 = 5
+MAP_1 = '01010010100001000000'
+
+COLS_2 = 4
+ROWS_2 = 3
+MAP_2 = '010100101000'
 
 
 @pytest.fixture
@@ -12,37 +20,29 @@ def example_grid():
     0 0 0 0 0
     :return:
     """
-    cols = 4
-    rows = 5
-    obstacle_map = '01010010100001000000'
     start = Node(0, 0)
     end = Node(4, 4)
-    a_star = AStar(cols, rows, start, end)
-    grid = AStar.create_grid(cols, rows)
-    grid = AStar.fill_grids(grid, cols, rows, obstacle_map)
+    a_star = AStar(COLS_1, ROWS_1, start, end)
+    grid = AStar.create_grid(COLS_1, ROWS_1)
+    grid = AStar.fill_grids(grid, COLS_1, ROWS_1, MAP_1)
     return a_star, grid
 
 
 def test_create_grid():
-    cols = 4
-    rows = 3
-    grid = AStar.create_grid(cols, rows)
-    assert len(grid) == cols
-    assert len(grid[0]) == rows
+    grid = AStar.create_grid(COLS_1, ROWS_1)
+    assert len(grid) == COLS_1
+    assert len(grid[0]) == ROWS_1
 
 
 def test_fill_grids():
-    cols = 4
-    rows = 3
-    obstacle_map = '010100101000'
     """
     0 1 0
     1 0 0
     1 0 1
     0 0 0
     """
-    grid = AStar.create_grid(cols, rows)
-    grid = AStar.fill_grids(grid, cols, rows, obstacle_map)
+    grid = AStar.create_grid(COLS_2, ROWS_2)
+    grid = AStar.fill_grids(grid, COLS_2, ROWS_2, MAP_2)
     assert grid[0][0].obstacle == False
     assert grid[0][1].obstacle == True
     assert grid[1][1].obstacle == False
