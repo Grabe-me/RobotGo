@@ -38,14 +38,14 @@
 - сервер по-умолчанию принимает подключения на порт `50051`
 ## Запуск с Docker
 
-- ### amd64
+- ### [amd64](https://hub.docker.com/repository/docker/grabe85me/robot_go_amd64/general)
 
     
   ```
   docker run -p 50051:50051 grabe85me/robot_go_amd64:vol_1
   ```
 
-- ### arm
+- ### [arm](https://hub.docker.com/repository/docker/grabe85me/robot_go_arm/general)
 
     
   ```
