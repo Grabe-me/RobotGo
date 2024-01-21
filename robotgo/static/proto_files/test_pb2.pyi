@@ -2,7 +2,13 @@ from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
+from typing import (
+    ClassVar as _ClassVar,
+    Iterable as _Iterable,
+    Mapping as _Mapping,
+    Optional as _Optional,
+    Union as _Union,
+)
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
@@ -14,6 +20,7 @@ class Motion(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     LEFT: _ClassVar[Motion]
     UP: _ClassVar[Motion]
     FINISH: _ClassVar[Motion]
+
 ERROR: Motion
 RIGHT: Motion
 DOWN: Motion
@@ -43,13 +50,21 @@ class Field(_message.Message):
     M: int
     grid: str
     source: Point
-    def __init__(self, N: _Optional[int] = ..., M: _Optional[int] = ..., grid: _Optional[str] = ..., source: _Optional[_Union[Point, _Mapping]] = ...) -> None: ...
+    def __init__(
+        self,
+        N: _Optional[int] = ...,
+        M: _Optional[int] = ...,
+        grid: _Optional[str] = ...,
+        source: _Optional[_Union[Point, _Mapping]] = ...,
+    ) -> None: ...
 
 class MoveRequest(_message.Message):
     __slots__ = ("targets",)
     TARGETS_FIELD_NUMBER: _ClassVar[int]
     targets: _containers.RepeatedCompositeFieldContainer[Point]
-    def __init__(self, targets: _Optional[_Iterable[_Union[Point, _Mapping]]] = ...) -> None: ...
+    def __init__(
+        self, targets: _Optional[_Iterable[_Union[Point, _Mapping]]] = ...
+    ) -> None: ...
 
 class MoveResponse(_message.Message):
     __slots__ = ("direction",)

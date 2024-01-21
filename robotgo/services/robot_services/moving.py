@@ -5,8 +5,9 @@ from robotgo.static.proto_files.test_pb2 import Point, Motion
 
 
 class Move:
-
-    def __init__(self, grid: list[list[Node]], current_point: Point, targets: list[Point]):
+    def __init__(
+        self, grid: list[list[Node]], current_point: Point, targets: list[Point]
+    ):
         self.grid = grid
         self.targets = targets
         self.current_point = current_point
@@ -34,8 +35,16 @@ class Move:
     async def finding_out_best_way(self) -> list[Node]:
         best_way: list[Node] = []
         with ProcessPoolExecutor() as executor:
-            tasks = [self.loop.run_in_executor(executor, algorythm, (self._current_point.i, self._current_point.j),
-                                               (target.i, target.j), self.grid) for target in self.targets]
+            tasks = [
+                self.loop.run_in_executor(
+                    executor,
+                    algorythm,
+                    (self._current_point.i, self._current_point.j),
+                    (target.i, target.j),
+                    self.grid,
+                )
+                for target in self.targets
+            ]
             results = await asyncio.gather(*tasks)
 
             for target, result in zip(self.targets, results):

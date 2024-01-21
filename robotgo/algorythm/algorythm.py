@@ -2,17 +2,13 @@ from robotgo.algorythm import AStar, Node
 
 COLS = 4
 ROWS = 5
-MAP = '01010010100001000000'
+MAP = "01010010100001000000"
 
 START_COORD = (0, 0)
 END_COORD = (3, 4)
 
 
-def get_grid(
-    cols: int,
-    rows: int,
-    obstacle_map: str
-):
+def get_grid(cols: int, rows: int, obstacle_map: str):
     grid = AStar.create_grid(cols, rows)
     grid = AStar.fill_grids(grid, cols, rows, obstacle_map)
     grid = AStar.get_neighbors(grid, cols, rows)
@@ -20,9 +16,7 @@ def get_grid(
 
 
 def algorythm(
-    start_coords: tuple[int],
-    end_coords: tuple[int],
-    grid: list[list[Node]]
+    start_coords: tuple[int], end_coords: tuple[int], grid: list[list[Node]]
 ) -> list[Node]:
     open_set = []
     closed_set = []

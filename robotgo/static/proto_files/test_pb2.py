@@ -7,32 +7,35 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%robotgo/static/proto_files/test.proto\"\x07\n\x05\x45mpty\"\x1d\n\x05Point\x12\t\n\x01i\x18\x01 \x01(\x05\x12\t\n\x01j\x18\x02 \x01(\x05\"C\n\x05\x46ield\x12\t\n\x01N\x18\x01 \x01(\x05\x12\t\n\x01M\x18\x02 \x01(\x05\x12\x0c\n\x04grid\x18\x03 \x01(\t\x12\x16\n\x06source\x18\x04 \x01(\x0b\x32\x06.Point\"&\n\x0bMoveRequest\x12\x17\n\x07targets\x18\x02 \x03(\x0b\x32\x06.Point\"*\n\x0cMoveResponse\x12\x1a\n\tdirection\x18\x01 \x01(\x0e\x32\x07.Motion*F\n\x06Motion\x12\t\n\x05\x45RROR\x10\x00\x12\t\n\x05RIGHT\x10\x01\x12\x08\n\x04\x44OWN\x10\x02\x12\x08\n\x04LEFT\x10\x03\x12\x06\n\x02UP\x10\x04\x12\n\n\x06\x46INISH\x10\x05\x32S\n\nPathFinder\x12\x1a\n\x08SetField\x12\x06.Field\x1a\x06.Empty\x12)\n\x06Moving\x12\x0c.MoveRequest\x1a\r.MoveResponse(\x01\x30\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n%robotgo/static/proto_files/test.proto"\x07\n\x05\x45mpty"\x1d\n\x05Point\x12\t\n\x01i\x18\x01 \x01(\x05\x12\t\n\x01j\x18\x02 \x01(\x05"C\n\x05\x46ield\x12\t\n\x01N\x18\x01 \x01(\x05\x12\t\n\x01M\x18\x02 \x01(\x05\x12\x0c\n\x04grid\x18\x03 \x01(\t\x12\x16\n\x06source\x18\x04 \x01(\x0b\x32\x06.Point"&\n\x0bMoveRequest\x12\x17\n\x07targets\x18\x02 \x03(\x0b\x32\x06.Point"*\n\x0cMoveResponse\x12\x1a\n\tdirection\x18\x01 \x01(\x0e\x32\x07.Motion*F\n\x06Motion\x12\t\n\x05\x45RROR\x10\x00\x12\t\n\x05RIGHT\x10\x01\x12\x08\n\x04\x44OWN\x10\x02\x12\x08\n\x04LEFT\x10\x03\x12\x06\n\x02UP\x10\x04\x12\n\n\x06\x46INISH\x10\x05\x32S\n\nPathFinder\x12\x1a\n\x08SetField\x12\x06.Field\x1a\x06.Empty\x12)\n\x06Moving\x12\x0c.MoveRequest\x1a\r.MoveResponse(\x01\x30\x01\x62\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'robotgo.static.proto_files.test_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(
+    DESCRIPTOR, "robotgo.static.proto_files.test_pb2", _globals
+)
 if _descriptor._USE_C_DESCRIPTORS == False:
-  DESCRIPTOR._options = None
-  _globals['_MOTION']._serialized_start=234
-  _globals['_MOTION']._serialized_end=304
-  _globals['_EMPTY']._serialized_start=41
-  _globals['_EMPTY']._serialized_end=48
-  _globals['_POINT']._serialized_start=50
-  _globals['_POINT']._serialized_end=79
-  _globals['_FIELD']._serialized_start=81
-  _globals['_FIELD']._serialized_end=148
-  _globals['_MOVEREQUEST']._serialized_start=150
-  _globals['_MOVEREQUEST']._serialized_end=188
-  _globals['_MOVERESPONSE']._serialized_start=190
-  _globals['_MOVERESPONSE']._serialized_end=232
-  _globals['_PATHFINDER']._serialized_start=306
-  _globals['_PATHFINDER']._serialized_end=389
+    DESCRIPTOR._options = None
+    _globals["_MOTION"]._serialized_start = 234
+    _globals["_MOTION"]._serialized_end = 304
+    _globals["_EMPTY"]._serialized_start = 41
+    _globals["_EMPTY"]._serialized_end = 48
+    _globals["_POINT"]._serialized_start = 50
+    _globals["_POINT"]._serialized_end = 79
+    _globals["_FIELD"]._serialized_start = 81
+    _globals["_FIELD"]._serialized_end = 148
+    _globals["_MOVEREQUEST"]._serialized_start = 150
+    _globals["_MOVEREQUEST"]._serialized_end = 188
+    _globals["_MOVERESPONSE"]._serialized_start = 190
+    _globals["_MOVERESPONSE"]._serialized_end = 232
+    _globals["_PATHFINDER"]._serialized_start = 306
+    _globals["_PATHFINDER"]._serialized_end = 389
 # @@protoc_insertion_point(module_scope)

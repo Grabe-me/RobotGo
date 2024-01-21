@@ -2,9 +2,7 @@ from robotgo.algorythm import Node
 
 
 class AStar:
-
     def __init__(self, cols, rows, start, end):
-
         self.cols = cols
         self.rows = rows
         self.start = start
@@ -36,13 +34,15 @@ class AStar:
         return [[[] for _ in range(rows)] for _ in range(cols)]
 
     @staticmethod
-    def fill_grids(grid: list[list[Node]], cols: int, rows: int, obstacle_map: str) -> list[list[Node]]:
+    def fill_grids(
+        grid: list[list[Node]], cols: int, rows: int, obstacle_map: str
+    ) -> list[list[Node]]:
         """
         Filling grid with Node items
         N=cols=i
         M=rows=j
         obstacle_map='01010010100001000000'
-    """
+        """
 
         for i in range(cols):
             for j in range(rows):
@@ -62,7 +62,6 @@ class AStar:
 
     @staticmethod
     def start_path(open_set: list, closed_set: list, end: Node):
-
         best_way = 0
         for i in range(len(open_set)):
             if open_set[i].distance_fee < open_set[best_way].distance_fee:
@@ -91,14 +90,20 @@ class AStar:
                     if neighbor.x == open_set[k].x and neighbor.y == open_set[k].y:
                         if temp_distance_from < open_set[k].distance_from:
                             open_set[k].distance_from = temp_distance_from
-                            open_set[k].distance_to = AStar.heuristic_score(open_set[k], end)
-                            open_set[k].distance_fee = open_set[k].distance_from + open_set[k].distance_to
+                            open_set[k].distance_to = AStar.heuristic_score(
+                                open_set[k], end
+                            )
+                            open_set[k].distance_fee = (
+                                open_set[k].distance_from + open_set[k].distance_to
+                            )
                             open_set[k].previous = current_node
                         control_flag = 1
                 if control_flag != 1:
                     neighbor.distance_from = temp_distance_from
                     neighbor.distance_to = AStar.heuristic_score(neighbor, end)
-                    neighbor.distance_fee = neighbor.distance_from + neighbor.distance_to
+                    neighbor.distance_fee = (
+                        neighbor.distance_from + neighbor.distance_to
+                    )
                     neighbor.previous = current_node
                     open_set.append(neighbor)
 

@@ -1,5 +1,4 @@
 class Node:
-
     def __init__(self, x, y):
         """
 
@@ -17,7 +16,6 @@ class Node:
         self.obstacle = False
 
     def add_neighbors(self, grid, columns, rows):
-
         neighbor_x = self.x
         neighbor_y = self.y
 

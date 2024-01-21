@@ -4,8 +4,18 @@ import grpc
 from typing import AsyncIterable
 from robotgo.algorythm.algorythm import get_grid
 from robotgo.services.robot_services.moving import Move
-from robotgo.static.proto_files.test_pb2 import Point, Field, MoveRequest, Motion, MoveResponse, Empty
-from robotgo.static.proto_files.test_pb2_grpc import PathFinderServicer, add_PathFinderServicer_to_server
+from robotgo.static.proto_files.test_pb2 import (
+    Point,
+    Field,
+    MoveRequest,
+    Motion,
+    MoveResponse,
+    Empty,
+)
+from robotgo.static.proto_files.test_pb2_grpc import (
+    PathFinderServicer,
+    add_PathFinderServicer_to_server,
+)
 
 
 class PathFinderService(PathFinderServicer):
@@ -40,7 +50,9 @@ class PathFinderService(PathFinderServicer):
         if self.current_point in self.targets:
             self.targets.remove(self.current_point)
 
-    async def Moving(self, request_iterator: AsyncIterable[MoveRequest], context) -> AsyncIterable[MoveResponse]:
+    async def Moving(
+        self, request_iterator: AsyncIterable[MoveRequest], context
+    ) -> AsyncIterable[MoveResponse]:
         if self.field is None:
             print("Error: Field is not set.")
             async for _ in request_iterator:

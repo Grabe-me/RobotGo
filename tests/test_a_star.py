@@ -4,11 +4,11 @@ from robotgo.algorythm import Node, AStar
 
 COLS_1 = 4
 ROWS_1 = 5
-MAP_1 = '01010010100001000000'
+MAP_1 = "01010010100001000000"
 
 COLS_2 = 4
 ROWS_2 = 3
-MAP_2 = '010100101000'
+MAP_2 = "010100101000"
 
 
 @pytest.fixture

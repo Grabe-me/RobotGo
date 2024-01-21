@@ -4,7 +4,7 @@ from robotgo.algorythm import AStar, algorythm
 
 COLS = 4
 ROWS = 5
-MAP = '01010010100001000000'
+MAP = "01010010100001000000"
 START_COORD = (0, 0)
 END_COORD = (3, 4)
 
