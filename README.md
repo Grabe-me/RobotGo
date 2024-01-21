@@ -14,19 +14,26 @@
 - клонирование репозитория
 
 
-    git clone https://github.com/Grabe-me/RobotGo
-    cd RobotGo
+  ```
+  git clone https://github.com/Grabe-me/RobotGo
+
+  cd RobotGo
+  ```
 
 - установка зависимостей
 
     
-    pip instal poetry
-    poetry install
+  ```
+  pip instal poetry
+  poetry install
+  ```
 
 - запуск сервера
 
 
-    poetry run python main.py
+  ```
+  poetry run python main.py
+  ```
 
 - сервер по-умолчанию принимает подключения на порт `50051`
 ## Запуск с Docker
@@ -34,12 +41,16 @@
 ### - amd64
 
     
-    docker run -p 50051:50051 grabe85me/robot_go_amd64:vol_1 
+  ```
+  docker run -p 50051:50051 grabe85me/robot_go_amd64:vol_1
+  ```
 
 ### - arm
 
     
-    docker run -p 50051:50051 grabe85me/robot_go_arm:vol_1
+  ```
+  docker run -p 50051:50051 grabe85me/robot_go_arm:vol_1
+  ```
 
 ## Подключение
 
