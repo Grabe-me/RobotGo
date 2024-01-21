@@ -17,8 +17,8 @@ def example_grid():
     return grid
 
 
-def test_main():
-    final_path = algorythm(COLS, ROWS, START_COORD, END_COORD, MAP)
+def test_main(example_grid):
+    final_path = algorythm(START_COORD, END_COORD, example_grid)
     assert len(final_path) > 0
     assert final_path[0].x == START_COORD[0]
     assert final_path[0].y == START_COORD[1]
@@ -26,6 +26,6 @@ def test_main():
     assert final_path[-1].y == END_COORD[1]
 
 
-def test_main_invalid_coords():
+def test_main_invalid_coords(example_grid):
     with pytest.raises(IndexError):
-        algorythm(COLS, ROWS, (5, 0), END_COORD, MAP)
+        algorythm((5, 0), END_COORD, example_grid)

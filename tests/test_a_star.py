@@ -27,8 +27,8 @@ def test_create_grid():
     cols = 4
     rows = 3
     grid = AStar.create_grid(cols, rows)
-    assert len(grid) == rows
-    assert len(grid[0]) == cols
+    assert len(grid) == cols
+    assert len(grid[0]) == rows
 
 
 def test_fill_grids():
