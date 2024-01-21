@@ -78,11 +78,3 @@ async def serve() -> None:
     await server.start()
     logging.info("server listening on PORT 50051")
     await server.wait_for_termination()
-
-if __name__ == "__main__":
-    try:
-        logging.basicConfig(level=logging.INFO)
-        asyncio.get_event_loop().run_until_complete(serve())
-    except KeyboardInterrupt:
-        logging.info("shutdown server")
-        exit()
