@@ -1,0 +1,31 @@
+syntax = "proto3";
+message Empty {}
+service PathFinder {
+  rpc SetField (Field) returns (Empty); // инициализация начального состояния
+  rpc Moving (stream MoveRequest) returns (stream MoveResponse); // процесс движения
+}
+// как в матрице
+message Point {
+  int32 i = 1; // вертикальная координата
+  int32 j = 2; // горизонтальная координата
+}
+message Field {
+  int32 N = 1; // высота
+  int32 M = 2; // ширина
+  string grid = 3; // поле в виде строки единиц и нулей. где 1 - стена, 0 - пусто
+  Point source = 4; // где находится робот в начале движения
+}
+message MoveRequest {
+ repeated Point targets = 2; // целевые точки робота на текущей итерации
+}
+enum Motion {
+  ERROR = 0;
+  RIGHT = 1;
+  DOWN = 2;
+  LEFT = 3;
+  UP = 4;
+  FINISH = 5;
+}
+message MoveResponse {
+  Motion direction = 1; // команда для робота
+}
