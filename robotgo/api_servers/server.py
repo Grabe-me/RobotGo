@@ -23,7 +23,7 @@ class PathFinderService(PathFinderServicer):
         self.field = None
         self.grid = None
         self.start = None
-        self.targets: list[Point] = []
+        self.targets = []
         self.current_point = None
         self.loop = None
 
@@ -31,7 +31,7 @@ class PathFinderService(PathFinderServicer):
         self.field = None
         self.grid = None
         self.start = None
-        self.targets: list[Point] = []
+        self.targets = []
         self.current_point = None
 
     async def SetField(self, request: Field, context) -> Empty:
@@ -39,7 +39,7 @@ class PathFinderService(PathFinderServicer):
         asyncio.create_task(asyncio.to_thread(self.set_field, request, context))
         return Empty()
 
-    def set_field(self, request: Field, context) -> Empty:
+    def set_field(self, request: Field, context) -> None:
         self.field = request
         self.grid = get_grid(self.field.N, self.field.M, self.field.grid)
         self.start = self.field.source
@@ -76,7 +76,9 @@ class PathFinderService(PathFinderServicer):
             # записываем выбранное место как текущее
             next_step, self.current_point = await move.next_step()
             logging.info(
-                f"current position: (x:{self.current_point.i}; y:{self.current_point.j}) direction: {next_step}"
+                f"current position: "
+                f"(x:{self.current_point.i}; y:{self.current_point.j}) "
+                f"direction: {next_step}"
             )
             # отправляем направление движения
             yield MoveResponse(direction=next_step)

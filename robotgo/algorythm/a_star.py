@@ -81,7 +81,7 @@ class AStar:
         closed_set.append(current_node)
         neighbors = current_node.neighbors
         for neighbor in neighbors:
-            if (neighbor in closed_set) or (neighbor.obstacle == True):
+            if (neighbor in closed_set) or neighbor.obstacle:
                 continue
             else:
                 temp_distance_from = current_node.distance_from + 1

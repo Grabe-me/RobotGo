@@ -18,11 +18,11 @@ def get_grid(cols: int, rows: int, obstacle_map: str):
 def algorythm(
     start_coords: tuple[int], end_coords: tuple[int], grid: list[list[Node]]
 ) -> list[Node]:
-    open_set = []
-    closed_set = []
+    open_set: list[Node] = []
+    closed_set: list[Node] = []
     final_path: list[Node] = []
-    open_set.append(grid[start_coords[0]][start_coords[1]])
-    end = grid[end_coords[0]][end_coords[1]]
+    open_set.append(grid[start_coords[0]][start_coords[1]])  # type: ignore
+    end = grid[end_coords[0]][end_coords[1]]  # type: ignore
     while len(open_set) > 0:
         open_set, closed_set, final_path = AStar.start_path(open_set, closed_set, end)
         if len(final_path) > 0:
