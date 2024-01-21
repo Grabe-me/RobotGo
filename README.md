@@ -42,14 +42,14 @@
 
     
   ```
-  docker run -p 50051:50051 grabe85me/robot_go_amd64:vol_1
+  docker run -p 50051:50051 grabe85me/robot_go_amd64:updated
   ```
 
 - ### [arm](https://hub.docker.com/repository/docker/grabe85me/robot_go_arm/general)
 
     
   ```
-  docker run -p 50051:50051 grabe85me/robot_go_arm:vol_1
+  docker run -p 50051:50051 grabe85me/robot_go_arm:updated
   ```
 
 ## Подключение
@@ -57,4 +57,8 @@
 - Пример реализации [клиента](https://github.com/Grabe-me/RobotGo/blob/master/robotgo/api_servers/client.py) для взаимодействия с роботом
 - Proto [файл](https://github.com/Grabe-me/RobotGo/blob/master/robotgo/static/proto_files/test.proto) для реализации клиента и создания запросов
 
+## Обновлено
+
+- добавлены дополнительные проверки валидности входных данных
+- собраны новые docker образы с тэгом `updated`
 #
