@@ -1,3 +1,5 @@
+from typing import Any
+
 from robotgo.algorythm import Node
 
 
@@ -11,7 +13,7 @@ class AStar:
         self.obstacle_list = False
 
     @staticmethod
-    def clean_open_set(open_set: list, current_node):
+    def clean_open_set(open_set: list, current_node: Node) -> list:
         try:
             open_set.remove(current_node)
         except ValueError:
@@ -20,7 +22,7 @@ class AStar:
             return open_set
 
     @staticmethod
-    def heuristic_score(current_node, end) -> int:
+    def heuristic_score(current_node: Node, end: Node) -> int:
         """Heuristic distance to end point"""
         return abs(current_node.x - end.x) + abs(current_node.y - end.y)
 
@@ -53,7 +55,7 @@ class AStar:
         return grid
 
     @staticmethod
-    def get_neighbors(grid, cols, rows) -> list[list[Node]]:
+    def get_neighbors(grid: list[list[Node]], cols: int, rows: int) -> list[list[Node]]:
         """Adding neighbours Nodes for each Node"""
         for i in range(cols):
             for j in range(rows):
@@ -61,7 +63,7 @@ class AStar:
         return grid
 
     @staticmethod
-    def start_path(open_set: list, closed_set: list, end: Node):
+    def start_path(open_set: list, closed_set: list, end: Node) -> tuple[list[Node], list[Node], list[Node]]:
         best_way = 0
         for i in range(len(open_set)):
             if open_set[i].distance_fee < open_set[best_way].distance_fee:

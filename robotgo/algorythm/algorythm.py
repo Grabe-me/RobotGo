@@ -8,7 +8,7 @@ START_COORD = (0, 0)
 END_COORD = (3, 4)
 
 
-def get_grid(cols: int, rows: int, obstacle_map: str):
+def get_grid(cols: int, rows: int, obstacle_map: str) -> list[list[Node]]:
     grid = AStar.create_grid(cols, rows)
     grid = AStar.fill_grids(grid, cols, rows, obstacle_map)
     grid = AStar.get_neighbors(grid, cols, rows)

@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import grpc  # type: ignore
-from typing import AsyncIterable
+from typing import AsyncIterable, Any
 from robotgo.algorythm.algorythm import get_grid
 from robotgo.services.robot_services.moving import Move
 from robotgo.static.proto_files.test_pb2 import (
@@ -34,7 +34,7 @@ class PathFinderService(PathFinderServicer):
         self.targets = []
         self.current_point = None
 
-    async def SetField(self, request: Field, context) -> Empty:
+    async def SetField(self, request: Field, context: Any) -> Empty:
         self.reset()
         if self.check_data(request):
             logging.info("входные данные верны")
@@ -52,7 +52,7 @@ class PathFinderService(PathFinderServicer):
             and len(request.grid) == (request.M * request.N) == len(grid)
         )
 
-    def set_field(self, request: Field, context) -> None:
+    def set_field(self, request: Field, context: Any) -> None:
         self.field = request
         self.grid = get_grid(self.field.N, self.field.M, self.field.grid)
         self.start = self.field.source
@@ -64,7 +64,7 @@ class PathFinderService(PathFinderServicer):
             self.targets.remove(self.current_point)
 
     async def Moving(
-        self, request_iterator: AsyncIterable[MoveRequest], context
+        self, request_iterator: AsyncIterable[MoveRequest], context: Any
     ) -> AsyncIterable[MoveResponse]:
         if self.field is None:
             logging.warning("Field is not set.")
@@ -99,7 +99,7 @@ class PathFinderService(PathFinderServicer):
             # отправляем направление движения
             yield MoveResponse(direction=direction)
 
-    def check_target(self, target: Point):
+    def check_target(self, target: Point) -> bool:
         return (
             isinstance(target.i, int)
             and isinstance(target.j, int)

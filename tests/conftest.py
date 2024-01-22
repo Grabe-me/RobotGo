@@ -20,14 +20,14 @@ START_2 = (0, 0)
 END_2 = (3, 2)
 
 
-def get_params(raw_grid_map: str):
+def get_params(raw_grid_map: str) -> tuple[int, int, str]:
     cols = raw_grid_map.strip().splitlines()
     rows = [col for col in cols[0] if col.isdigit()]
     grid_map = raw_grid_map.replace(" ", "").replace("\n", "")
     return len(cols), len(rows), grid_map
 
 
-def get_params_with_grid(raw_grid_map: str):
+def get_params_with_grid(raw_grid_map: str) -> tuple[int, int, list[list[Node]]]:
     cols, rows, grid_map = get_params(raw_grid_map)
     grid = AStar.create_grid(cols, rows)
     grid = AStar.fill_grids(grid, cols, rows, grid_map)
