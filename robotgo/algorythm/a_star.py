@@ -63,7 +63,9 @@ class AStar:
         return grid
 
     @staticmethod
-    def start_path(open_set: list, closed_set: list, end: Node) -> tuple[list[Node], list[Node], list[Node]]:
+    def start_path(
+        open_set: list, closed_set: list, end: Node
+    ) -> tuple[list[Node], list[Node], list[Node]]:
         best_way = 0
         for i in range(len(open_set)):
             if open_set[i].distance_fee < open_set[best_way].distance_fee:
