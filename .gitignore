@@ -19,6 +19,6 @@ build/
 *.sqlite3
 *.log
 *.pyre/
-.robotgo/static/proto_files/*
-!.robotgo/static/proto_files/*.proto
-!.robotgo/static/proto_files/__init__.py
+robotgo/static/proto_files/*
+!robotgo/static/proto_files/*.proto
+!robotgo/static/proto_files/__init__.py
