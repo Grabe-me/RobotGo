@@ -1,6 +1,6 @@
 import asyncio
 import logging
-import grpc
+import grpc  # type: ignore
 from typing import AsyncIterable
 from robotgo.algorythm.algorythm import get_grid
 from robotgo.services.robot_services.moving import Move
@@ -66,42 +66,38 @@ class PathFinderService(PathFinderServicer):
     async def Moving(
         self, request_iterator: AsyncIterable[MoveRequest], context
     ) -> AsyncIterable[MoveResponse]:
-        error = False
         if self.field is None:
             logging.warning("Field is not set.")
             async for _ in request_iterator:
-                error = True
-        if not error:
-            # ожидаем получения сетки
-            while not self.grid:
-                await asyncio.sleep(0.1)
-            # проверка наличия цикла
-            self.set_temp_props()
-            async for move_request in request_iterator:
-                # добавляем новые цели в список активных
-                for target in move_request.targets:
-                    if not self.check_target(target):
-                        error = True
-                        break
-                    if target not in self.targets and not error:
-                        self.targets.append(target)
-                # проходим по списку активных целей
-                # расчитываем кратчайший путь для каждой цели
-                if not error:
-                    move = Move(self.grid, self.current_point, self.targets)
-                    # вычисляем направление движения
-                    # записываем выбранное место как текущее
-                    direction, self.current_point = await move.next_step()
-                    logging.info(
-                        f"движение: {direction} "
-                        f"на позицию: "
-                        f"(x:{self.current_point.i}; y:{self.current_point.j})"
-                    )
-                else:
-                    direction = Motion.ERROR
-                    logging.warning("Невалидные данные для перемещения")
-                # отправляем направление движения
-                yield MoveResponse(direction=direction)
+                yield MoveResponse(direction=Motion.ERROR)
+                return
+        # ожидаем получения сетки
+        while not self.grid:
+            await asyncio.sleep(0.1)
+        # проверка наличия цикла
+        self.set_temp_props()
+        async for move_request in request_iterator:
+            # добавляем новые цели в список активных
+            for target in move_request.targets:
+                if not self.check_target(target):
+                    yield MoveResponse(direction=Motion.ERROR)
+                    return
+                if target not in self.targets:
+                    self.targets.append(target)
+            # проходим по списку активных целей
+            # расчитываем кратчайший путь для каждой цели
+            move = Move(self.grid, self.current_point, self.targets)
+            # вычисляем направление движения
+            # записываем выбранное место как текущее
+            direction, self.current_point = await move.next_step()
+            logging.info(
+                f"движение: {direction} "
+                f"на позицию: "
+                f"(x:{self.current_point.i}; y:{self.current_point.j})"
+            )
+            logging.warning("Невалидные данные для перемещения")
+            # отправляем направление движения
+            yield MoveResponse(direction=direction)
 
     def check_target(self, target: Point):
         return (

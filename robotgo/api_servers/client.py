@@ -1,6 +1,6 @@
 import asyncio
 import logging
-import grpc
+import grpc  # type: ignore
 from robotgo.static.proto_files.test_pb2 import MoveRequest, Field, Point
 from robotgo.static.proto_files.test_pb2_grpc import PathFinderStub
 

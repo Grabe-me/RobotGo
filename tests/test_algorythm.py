@@ -1,31 +1,24 @@
 import pytest
-
-from robotgo.algorythm import AStar, algorythm
-
-COLS = 4
-ROWS = 5
-MAP = "01010010100001000000"
-START_COORD = (0, 0)
-END_COORD = (3, 4)
+from robotgo.algorythm import algorythm
+from tests.conftest import GRID_MAP_1, START_1, END_1
 
 
-@pytest.fixture
-def example_grid():
-    grid = AStar.create_grid(COLS, ROWS)
-    grid = AStar.fill_grids(grid, COLS, ROWS, MAP)
-    grid = AStar.get_neighbors(grid, COLS, ROWS)
-    return grid
-
-
+@pytest.mark.fixt_data(GRID_MAP_1, START_1, END_1)
 def test_main(example_grid):
-    final_path = algorythm(START_COORD, END_COORD, example_grid)
+    start = example_grid[0].start
+    end = example_grid[0].end
+    print(len(example_grid[1]))
+    print(len(example_grid[1][0]))
+    final_path = algorythm((start.x, start.y), (end.x, end.y), example_grid[1])
     assert len(final_path) > 0
-    assert final_path[0].x == START_COORD[0]
-    assert final_path[0].y == START_COORD[1]
-    assert final_path[-1].x == END_COORD[0]
-    assert final_path[-1].y == END_COORD[1]
+    assert final_path[0].x == start.x
+    assert final_path[0].y == start.y
+    assert final_path[-1].x == end.x
+    assert final_path[-1].y == end.y
 
 
+@pytest.mark.fixt_data(GRID_MAP_1, START_1, END_1)
 def test_main_invalid_coords(example_grid):
+    end = example_grid[0].end
     with pytest.raises(IndexError):
-        algorythm((5, 0), END_COORD, example_grid)
+        algorythm((5, 0), (end.x, end.y), example_grid[1])

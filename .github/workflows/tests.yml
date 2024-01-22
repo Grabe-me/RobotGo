@@ -25,4 +25,8 @@ jobs:
         poetry install
 
     - name: Run tests
-      run: poetry run pytest
+      run:
+        poetry run mypy .
+        poetry run flake8 .
+        poetry run python robotgo/static/proto_files_utils.py
+        poetry run pytest
