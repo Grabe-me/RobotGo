@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - update
 
 jobs:
   algorythm_test:
